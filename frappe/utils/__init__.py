@@ -976,10 +976,10 @@ def get_build_version():
 def get_assets_json():
 	def _get_assets():
 		# get merged assets.json and assets-rtl.json
-		assets = frappe.parse_json(frappe.read_file("assets/assets.json"))
+		assets = frappe.parse_json(frappe.read_file("assets/assets.json")) or {}
 
 		if assets_rtl := frappe.read_file("assets/assets-rtl.json"):
-			assets.update(frappe.parse_json(assets_rtl))
+			assets.update(frappe.parse_json(assets_rtl) or {})
 
 		return assets
 
